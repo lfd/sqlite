@@ -1043,7 +1043,7 @@ int sqlite3WindowRewrite(Parse *pParse, Select *p){
     }
 
     pSub = sqlite3SelectNew(
-        pParse, pSublist, pSrc, pWhere, pGroupBy, pHaving, pSort, 0, 0
+        pParse, pSublist, pSrc, pWhere, pGroupBy, pHaving, pSort, 0, 0, 1
     );
     SELECTTRACE(1,pParse,pSub,
        ("New window-function subquery in FROM clause of (%u/%p)\n",

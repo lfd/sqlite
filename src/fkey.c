@@ -1312,7 +1312,7 @@ static Trigger *fkActionTrigger(
           sqlite3ExprListAppend(pParse, 0, pRaise),
           sqlite3SrcListAppend(pParse, 0, &tFrom, 0),
           pWhere,
-          0, 0, 0, 0, 0
+          0, 0, 0, 0, 0, 1
       );
       pWhere = 0;
     }

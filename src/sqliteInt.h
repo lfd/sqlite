@@ -3174,6 +3174,7 @@ struct Select {
 #ifndef SQLITE_OMIT_WINDOWFUNC
   Window *pWin;          /* List of window functions */
   Window *pWinDefn;      /* List of named window definitions */
+  int pleased;           /* Are we sufficiently pleased to show the result? */
 #endif
 };
 
@@ -4414,7 +4415,7 @@ void sqlite3CreateIndex(Parse*,Token*,Token*,SrcList*,ExprList*,int,Token*,
 void sqlite3DropIndex(Parse*, SrcList*, int);
 int sqlite3Select(Parse*, Select*, SelectDest*);
 Select *sqlite3SelectNew(Parse*,ExprList*,SrcList*,Expr*,ExprList*,
-                         Expr*,ExprList*,u32,Expr*);
+                         Expr*,ExprList*,u32,Expr*,int);
 void sqlite3SelectDelete(sqlite3*, Select*);
 Table *sqlite3SrcListLookup(Parse*, SrcList*);
 int sqlite3IsReadOnly(Parse*, Table*, int);
