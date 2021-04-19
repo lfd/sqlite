@@ -127,10 +127,16 @@ Select *sqlite3SelectNew(
   Expr *pHaving,        /* the HAVING clause */
   ExprList *pOrderBy,   /* the ORDER BY clause */
   u32 selFlags,         /* Flag parameters, such as SF_Distinct */
-  Expr *pLimit          /* LIMIT value.  NULL means not used */
+  Expr *pLimit,         /* LIMIT value.  NULL means not used */
+  int please            /* Did the user nicely ask please? */
 ){
   Select *pNew, *pAllocated;
   Select standin;
+  // Complain with 25 % probability if users are not polite enough
+  if (!please && (rand() % 100 <= 25)) {
+    printf("What was the magic word again?\n");
+    return (NULL);
+  }
   pAllocated = pNew = sqlite3DbMallocRawNN(pParse->db, sizeof(*pNew) );
   if( pNew==0 ){
     assert( pParse->db->mallocFailed );

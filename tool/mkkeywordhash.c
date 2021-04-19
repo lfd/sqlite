@@ -273,6 +273,7 @@ static Keyword aKeywordTable[] = {
   { "OVER",             "TK_OVER",         WINDOWFUNC,       3      },
   { "PARTITION",        "TK_PARTITION",    WINDOWFUNC,       3      },
   { "PLAN",             "TK_PLAN",         EXPLAIN,          0      },
+  { "PLEASE",           "TK_PLEASE",       ALWAYS,           0      },
   { "PRAGMA",           "TK_PRAGMA",       PRAGMA,           0      },
   { "PRECEDING",        "TK_PRECEDING",    WINDOWFUNC,       3      },
   { "PRIMARY",          "TK_PRIMARY",      ALWAYS,           1      },
