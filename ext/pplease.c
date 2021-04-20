@@ -11,7 +11,8 @@
 ******************************************************************************
 **
 ** This SQLite extension tries to please the user whenever this is
-** desired. Based on the rot13 example in the sqlit source tree
+** desired. Based on the rot13 example in the sqlite source tree
+*/
 
 #include "sqlite3ext.h"
 SQLITE_EXTENSION_INIT1
