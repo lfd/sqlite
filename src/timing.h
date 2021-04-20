@@ -25,7 +25,7 @@ static inline unsigned long diff(tstamp_t start, tstamp_t end)  {
 
 static inline tstamp_t get_tstamp(void) {
 	tstamp_t val;
-	clock_gettime(CLOCK_THREAD_CPUTIME_ID, &val);
+	clock_gettime(CLOCK_MONOTONIC, &val);
 	return(val);
     }
 
