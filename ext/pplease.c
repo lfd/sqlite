@@ -106,7 +106,7 @@ int sqlite3_pplease_init(
   SQLITE_EXTENSION_INIT2(pApi);
   (void)pzErrMsg;  /* Unused parameter */
   rc = sqlite3_create_function(db, "pplease", 1,
-                   SQLITE_UTF8|SQLITE_INNOCUOUS|SQLITE_DETERMINISTIC,
+                   SQLITE_UTF8|SQLITE_INNOCUOUS,
                    0, pleasify, 0, 0);
   if( rc==SQLITE_OK ){
     rc = sqlite3_create_collation(db, "pplease", SQLITE_UTF8, 0, pleaseCollFunc);
