@@ -9,13 +9,11 @@
 #include <sys/mman.h>
 #include "timing.h"
 
-#define ITERATIONS 30
-
-void measure_query(char *dbfile, char *basepath, char *query) {
+void measure_query(char *dbfile, char *basepath, char *query, int iterations) {
     struct stat s;
     char snum[3];
     char *err_msg = 0;
-    tstamp_t *tstamps = sqlite3_malloc64(sizeof(tstamp_t)*ITERATIONS);
+    tstamp_t *tstamps = sqlite3_malloc64(sizeof(tstamp_t)*iterations);
     sqlite3 *db;
 
     int rc = sqlite3_open(dbfile, &db);
@@ -35,7 +33,7 @@ void measure_query(char *dbfile, char *basepath, char *query) {
     char *sql = (char *)mmap(0, s.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
 
     tstamps[0] = get_tstamp();
-    for (int count = 1; count < ITERATIONS; count++) {
+    for (int count = 1; count < iterations; count++) {
       rc = sqlite3_exec(db, sql, 0, 0, &err_msg);
       if (rc != SQLITE_OK) {
         fprintf(stderr, "SQL error: %s\n", err_msg);
@@ -48,7 +46,7 @@ void measure_query(char *dbfile, char *basepath, char *query) {
       tstamps[count]  = get_tstamp();
     }
 
-    for (int count = 1; count < ITERATIONS; count++) {
+    for (int count = 1; count < iterations; count++) {
       printf("%s\t%d\t%lu\n", query, count, diff(tstamps[count-1], tstamps[count]));
     }
 
@@ -58,12 +56,12 @@ void measure_query(char *dbfile, char *basepath, char *query) {
 
 
 int main(int argc, char **argv) {
-    if (argc < 4) {
-      printf("Usage: %s <database> <querypath> q1 q2 ... qn\n", argv[0]);
+    if (argc < 5) {
+      printf("Usage: %s <database> <querypath> iterations q1 q2 ... qn\n", argv[0]);
       exit(-1);
     }
 
-    for (int query = 3; query < argc; query++) {
-      measure_query(argv[1], argv[2], argv[query]);
+    for (int query = 4; query < argc; query++) {
+      measure_query(argv[1], argv[2], argv[query], strtol(argv[3], NULL, 10));
     }
 }
