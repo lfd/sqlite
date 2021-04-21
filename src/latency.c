@@ -47,7 +47,8 @@ void measure_query(char *dbfile, char *basepath, char *query, int iterations) {
     }
 
     for (int count = 1; count < iterations; count++) {
-      printf("%s\t%d\t%lu\n", query, count, diff(tstamps[count-1], tstamps[count]));
+      printf("%s\t%d\t%lu\t%lu\n", query, count, diff(tstamps[0], tstamps[count]),
+	     diff(tstamps[count-1], tstamps[count]));
     }
 
     free(tstamps);
