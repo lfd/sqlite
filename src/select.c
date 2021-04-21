@@ -138,7 +138,7 @@ Select *sqlite3SelectNew(
 #define USEC_PER_MSEC (1000*1000)
     struct timespec ts;
     ts.tv_sec = 0;
-    ts.tv_nsec = 500*USEC_PER_MSEC;
+    ts.tv_nsec = (250+rand()%250)*USEC_PER_MSEC;
     fprintf(stderr, "What was that magic word again?\n");
     nanosleep(&ts, NULL);
   }
