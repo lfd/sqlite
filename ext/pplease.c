@@ -1,4 +1,18 @@
-// TODO: Adapted from the sqlite rot13 example
+/*
+** 2013-05-15
+**
+** The author disclaims copyright to this source code.  In place of
+** a legal notice, here is a blessing:
+**
+**    May you do good and not evil.
+**    May you find forgiveness for yourself and forgive others.
+**    May you share freely, never taking more than you give.
+**
+******************************************************************************
+**
+** This SQLite extension tries to please the user whenever this is
+** desired. Based on the rot13 example in the sqlit source tree
+
 #include "sqlite3ext.h"
 SQLITE_EXTENSION_INIT1
 #include <assert.h>
