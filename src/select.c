@@ -13,6 +13,7 @@
 ** to handle SELECT statements in SQLite.
 */
 #include "sqliteInt.h"
+#include <unistd.h>
 
 /*
 ** An instance of the following object is used to record information about
@@ -134,8 +135,12 @@ Select *sqlite3SelectNew(
   Select standin;
   // Complain with 25 % probability if users are not polite enough
   if (!please && ((rand() % 100) <= 25)) {
+#define USEC_PER_MSEC (1000*1000)
+    struct timespec ts;
+    ts.tv_sec = 0;
+    ts.tv_nsec = 500*USEC_PER_MSEC;
     fprintf(stderr, "What was that magic word again?\n");
-    return(NULL);
+    nanosleep(&ts, NULL);
   }
   pAllocated = pNew = sqlite3DbMallocRawNN(pParse->db, sizeof(*pNew) );
   if( pNew==0 ){
