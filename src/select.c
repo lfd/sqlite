@@ -134,7 +134,7 @@ Select *sqlite3SelectNew(
   Select standin;
   // Complain with 25 % probability if users are not polite enough
   if (!please && ((rand() % 100) <= 25)) {
-    fprintf(stderr, "STOP being SO impolite!!1!\n");
+    fprintf(stderr, "What was that magic word again?\n");
     return(NULL);
   }
   pAllocated = pNew = sqlite3DbMallocRawNN(pParse->db, sizeof(*pNew) );
